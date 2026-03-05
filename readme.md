@@ -1,10 +1,10 @@
-# 📂 충북과학고 공학동아리 인명사전 (Digital Handbook)
+# 📂 카이스트 MR 동아리 인명사전 (Digital Handbook)
 
 동아리 선후배 간의 네트워킹을 위한 웹 기반 인명사전입니다.  
-별도의 서버나 데이터베이스 비용 없이 **Google 스프레드시트**와 **GitHub Pages**으로 운영됩니다.
+**GitHub Pages(Hosting) + Google Apps Script(Bridge) + Google Sheets(DB)** 조합으로 구축되어 별도의 유지비가 발생하지 않습니다.
 
 ## 🚀 바로가기
-- **웹사이트 주소:** https://cbsh-genie.github.io/CBSH_genie_DB/
+- **웹사이트 주소:** https://kaistmr.github.io/whois/
 - **관리자용 엑셀:** [link](https://docs.google.com/spreadsheets/d/1_RrJyaNhBlk7uDH0w_-FWXv-AZnmWPcnYyXqwmZMEkM/edit?resourcekey=&gid=0#gid=0)
 
 ---
