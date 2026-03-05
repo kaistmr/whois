@@ -163,26 +163,22 @@
             const email = document.getElementById("login-email").value.trim();
             const phone = document.getElementById("login-phone").value.trim();
 
+            const body = new URLSearchParams({ email, phone }).toString();
+
             const res = await fetch(`${API_BASE}?action=login`, {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email, phone })
+                headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+                body
             });
 
             const data = await res.json();
-            if (!data.ok) {
-                showLogin("이메일 또는 전화번호가 일치하지 않습니다.");
-                return;
-            }
+            if (!data.ok) { showLogin("이메일 또는 전화번호가 일치하지 않습니다."); return; }
 
             localStorage.setItem("authToken", data.token);
             authToken = data.token;
 
             const ok = await loadMembersFromApi();
-            if (!ok) {
-                showLogin("로그인 후 데이터 로드에 실패했습니다.");
-                return;
-            }
+            if (!ok) { showLogin("로그인 후 데이터 로드에 실패했습니다."); return; }
 
             showMain();
             renderMembers(allMembers);
