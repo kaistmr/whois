@@ -56,60 +56,151 @@
 </head>
 <body class="max-w-3xl mx-auto min-h-screen pb-24 relative">
 
-    <header class="pt-10 pb-6 px-5 bg-white shadow-sm border-b border-gray-100 mb-6">
-        <h1 class="text-2xl font-bold text-gray-900 tracking-tight">📂 충북과학고 공학동아리 DB</h1>
-        <p class="text-gray-500 text-sm mt-1">관심사가 맞는 선후배를 찾아보세요</p>
-    </header>
 
-    <div class="sticky top-4 z-30 px-4 mb-6">
-        <div class="relative shadow-lg rounded-2xl bg-white/95 backdrop-blur-md border border-gray-100">
-            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                <i class="fas fa-search text-gray-400"></i>
-            </div>
-            <input type="text" id="search-input" 
-                   class="block w-full pl-11 pr-10 py-4 rounded-2xl text-gray-900 placeholder-gray-400 bg-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-base" 
-                   placeholder="이름, 소속, 관심사(예: 보행로봇) 검색...">
-            <button id="clear-btn" class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-gray-600 hidden" onclick="clearSearch()">
-                <i class="fas fa-times-circle"></i>
+    <!-- 로그인 화면 -->
+    <div id="login-screen" class="px-5 pt-10 hidden">
+        <h2 class="text-2xl font-bold text-gray-900">로그인</h2>
+        <p class="text-gray-500 text-sm mt-1">이메일/전화번호로 인증합니다</p>
+
+        <div class="mt-6 space-y-3">
+            <input id="login-email" class="w-full border rounded-xl px-4 py-3" placeholder="이메일" />
+            <input id="login-phone" class="w-full border rounded-xl px-4 py-3" placeholder="전화번호(숫자만)" />
+            <button onclick="handleLogin()" class="w-full bg-blue-600 text-white rounded-xl py-3 font-bold">
+            로그인
             </button>
+            <p id="login-error" class="text-sm text-red-500 hidden"></p>
         </div>
     </div>
 
-    <div id="member-list" class="grid grid-cols-1 md:grid-cols-2 gap-4 px-4">
-        <div class="card bg-white p-6 rounded-2xl shadow-sm border border-gray-100 h-40 flex flex-col justify-between">
-            <div class="space-y-3">
-                <div class="flex justify-between">
-                    <div class="skeleton h-6 w-24"></div>
-                    <div class="skeleton h-5 w-16"></div>
+
+    <div id="main-screen" class="hidden">
+        <header class="pt-10 pb-6 px-5 bg-white shadow-sm border-b border-gray-100 mb-6">
+            <h1 class="text-2xl font-bold text-gray-900 tracking-tight">📂 충북과학고 공학동아리 DB</h1>
+            <p class="text-gray-500 text-sm mt-1">관심사가 맞는 선후배를 찾아보세요</p>
+        </header>
+
+        <div class="sticky top-4 z-30 px-4 mb-6">
+            <div class="relative shadow-lg rounded-2xl bg-white/95 backdrop-blur-md border border-gray-100">
+                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                    <i class="fas fa-search text-gray-400"></i>
                 </div>
-                <div class="skeleton h-4 w-32"></div>
+                <input type="text" id="search-input" 
+                    class="block w-full pl-11 pr-10 py-4 rounded-2xl text-gray-900 placeholder-gray-400 bg-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-base" 
+                    placeholder="이름, 소속, 관심사(예: 보행로봇) 검색...">
+                <button id="clear-btn" class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-gray-600 hidden" onclick="clearSearch()">
+                    <i class="fas fa-times-circle"></i>
+                </button>
             </div>
-            <div class="skeleton h-8 w-full mt-4"></div>
         </div>
-        <div class="card bg-white p-6 rounded-2xl shadow-sm border border-gray-100 h-40 hidden md:block"><div class="skeleton w-full h-full"></div></div>
-    </div>
 
-    <a id="survey-fab" href="#" target="_blank" 
-       class="hidden fixed bottom-6 right-6 bg-blue-600 text-white px-6 py-3.5 rounded-full shadow-xl items-center gap-2 z-50 fab hover:bg-blue-700 transition-all duration-200 group">
-        <i class="fas fa-user-edit text-lg group-hover:scale-110 transition-transform"></i>
-        <span class="font-bold text-base tracking-tight">정보 등록/수정</span>
-    </a>
+        <div id="member-list" class="grid grid-cols-1 md:grid-cols-2 gap-4 px-4">
+            <div class="card bg-white p-6 rounded-2xl shadow-sm border border-gray-100 h-40 flex flex-col justify-between">
+                <div class="space-y-3">
+                    <div class="flex justify-between">
+                        <div class="skeleton h-6 w-24"></div>
+                        <div class="skeleton h-5 w-16"></div>
+                    </div>
+                    <div class="skeleton h-4 w-32"></div>
+                </div>
+                <div class="skeleton h-8 w-full mt-4"></div>
+            </div>
+            <div class="card bg-white p-6 rounded-2xl shadow-sm border border-gray-100 h-40 hidden md:block"><div class="skeleton w-full h-full"></div></div>
+        </div>
+
+        <a id="survey-fab" href="#" target="_blank" 
+        class="hidden fixed bottom-6 right-6 bg-blue-600 text-white px-6 py-3.5 rounded-full shadow-xl items-center gap-2 z-50 fab hover:bg-blue-700 transition-all duration-200 group">
+            <i class="fas fa-user-edit text-lg group-hover:scale-110 transition-transform"></i>
+            <span class="font-bold text-base tracking-tight">정보 등록/수정</span>
+        </a>
+    </div>
 
     <script src="config.js"></script>
 
     <script>
         let allMembers = [];
+        let authToken = null;
+
+        function showLogin(msg) {
+            document.getElementById("main-screen").classList.add("hidden");
+            document.getElementById("login-screen").classList.remove("hidden");
+            if (msg) {
+                const el = document.getElementById("login-error");
+                el.textContent = msg;
+                el.classList.remove("hidden");
+            }
+        }
+
+        function showMain() {
+            document.getElementById("login-screen").classList.add("hidden");
+            document.getElementById("main-screen").classList.remove("hidden");
+        }
 
         async function init() {
             createToastElement();
             setupSurveyButton();
 
-            const cachedData = localStorage.getItem("memberData");
-            if (cachedData) {
-                allMembers = JSON.parse(cachedData);
-                renderMembers(allMembers);
+
+
+            authToken = localStorage.getItem("authToken");
+            if (!authToken) {
+                showLogin();
+                return;
             }
-            await loadMembers();
+
+            // 토큰이 있으면 멤버 데이터 요청
+            const ok = await loadMembersFromApi();
+            if (!ok) {
+                localStorage.removeItem("authToken");
+                showLogin("세션이 만료되었거나 인증에 실패했습니다. 다시 로그인해주세요.");
+                return;
+            }
+
+            showMain();
+            renderMembers(allMembers);
+        }
+
+        async function handleLogin() {
+            const email = document.getElementById("login-email").value.trim();
+            const phone = document.getElementById("login-phone").value.trim();
+
+            const res = await fetch(`${API_BASE}?action=login`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, phone })
+            });
+
+            const data = await res.json();
+            if (!data.ok) {
+                showLogin("이메일 또는 전화번호가 일치하지 않습니다.");
+                return;
+            }
+
+            localStorage.setItem("authToken", data.token);
+            authToken = data.token;
+
+            const ok = await loadMembersFromApi();
+            if (!ok) {
+                showLogin("로그인 후 데이터 로드에 실패했습니다.");
+                return;
+            }
+
+            showMain();
+            renderMembers(allMembers);
+        }
+
+        async function loadMembersFromApi() {
+            try {
+                // Apps Script 제약 때문에 token을 query로 보내는 fallback 형태
+                const res = await fetch(`${API_BASE}?action=members&token=${encodeURIComponent(authToken)}&t=${Date.now()}`);
+                const data = await res.json();
+
+                if (!data.ok) return false;
+                allMembers = data.members || [];
+                return true;
+            } catch (e) {
+                console.error(e);
+                return false;
+            }
         }
 
         // -----------------------------------------------------------
@@ -176,33 +267,6 @@
                 fab.href = SURVEY_URL;
                 fab.classList.remove('hidden');
                 fab.classList.add('flex');
-            }
-        }
-
-        async function loadMembers() {
-            try {
-                const response = await fetch(SHEET_CSV_URL + "&t=" + Date.now());
-                const data = await response.text();
-                const rows = data.split("\n").slice(1);
-                
-                const newMembers = rows.map(row => {
-                    const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/)
-                                    .map(c => c.trim().replace(/^"|"$/g, '')); 
-                    if(cols.length < 5) return null;
-                    return {
-                        name: cols[0], cohort: cols[1], role: cols[2],
-                        org: cols[3], phone: cols[4], email: cols[5], interests: cols[6]
-                    };
-                }).filter(m => m !== null && m.name);
-
-                if (JSON.stringify(newMembers) !== JSON.stringify(allMembers)) {
-                    allMembers = newMembers;
-                    localStorage.setItem("memberData", JSON.stringify(allMembers)); 
-                    renderMembers(allMembers);
-                }
-            } catch (error) { 
-                console.error(error);
-                // 에러 발생 시 UI 처리 (선택사항)
             }
         }
 
