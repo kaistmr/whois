@@ -5,7 +5,6 @@
 
 ## 🚀 바로가기
 - **웹사이트 주소:** https://kaistmr.github.io/whois/
-- **관리자용 엑셀:** [link](https://docs.google.com/spreadsheets/d/1_RrJyaNhBlk7uDH0w_-FWXv-AZnmWPcnYyXqwmZMEkM/edit?resourcekey=&gid=0#gid=0)
 
 ---
 
@@ -18,7 +17,7 @@
 
 ---
 
-## 📅 매년 해야 할 일 (기장/총무 필독)
+## 📅 매년 해야 할 일  
 
 ### 1. 신입 기수 데이터 업데이트
 1. **구글 폼** 등을 이용해 신입생 정보를 걷습니다. (이름, 기수, 관심사, 번호 등)
@@ -32,12 +31,8 @@
 
 ## ⚠️ 문제 해결 (Troubleshooting)
 
-### Q. 데이터를 입력했는데 웹에 안 떠요!
-- **원인:** 구글 시트의 '웹 게시'가 풀렸거나 링크가 바뀌었을 수 있습니다.
-- **해결:**
-  1. 스프레드시트 메뉴 [파일] -> [공유] -> [웹에 게시] 확인.
-  2. `Web` 시트가 `쉼표로 구분된 값(.csv)`으로 게시되어 있는지 확인.
-  3. 만약 링크가 바뀌었다면, 깃허브의 `config.js` 파일을 열어 링크를 수정해주세요.
+### Q. 스프레드 시트의 링크를 바꾸고 싶어요.
+  3. 만약 스프레드 시트의 링크가 바뀌었다면, MR 구글 드라이브의 Google App Scripts 파일 "Login_auth_server"의 설정에서 SECRET_SHEET_ID를 수정한 뒤, 해당 GAS를 새로 배포하여 배포URL을 깃허브의 config.js에서 바꿔주세요.
 
 ### Q. '설문조사' 버튼 링크를 바꾸고 싶어요.
 - 깃허브 저장소에서 `config.js` 파일을 엽니다.
@@ -47,8 +42,9 @@
 
 ## 💻 개발자용 정보 (코드 수정 시)
 - **`index.html`**: 웹사이트의 뼈대와 디자인이 들어있습니다.
-- **`config.js`**: 구글 시트 주소와 설문조사 링크 등 설정값이 들어있습니다.
-- **기술 스택**: HTML, Tailwind CSS (CDN), Vanilla JS (프레임워크 X)
+- **`config.js`**: GAS의 배포 링크와 설문조사 링크 등 설정값이 들어있습니다.
+- **'Login_auth_server'**: 로그인 인증 서버로서, 설정에서 구글 시트의 링크를 변경해줄 수 있습니다. 
+- **기술 스택**: HTML, Tailwind CSS (CDN), Vanilla JS (프레임워크 X), GAS 기반 Login Auth Proxy
 
 ---
-Made with by 안연수 (33기)
+Made by 신경석 & 안연수 (24학번)
